@@ -38,10 +38,19 @@
 		cursor: pointer;
 	}
 
-	button.about {
+	.button-container {
 		position: fixed;
 		left: 1em;
 		bottom: 1em;
+		display: flex;
+	}
+
+	a {
+		all: unset
+	}
+
+	.button-container>* {
+		margin-right: .5em;
 	}
 
 	video.main {
@@ -61,9 +70,29 @@
 		left: 0;
 	}
 
-	.container>* {
-		border: 1px solid black;
+	.page {
+		background-color: black;
+		overflow: scroll;
+		transition: all 500ms;
+		position: fixed;
+		width: 100vw;
+	}
+
+	.project {
+		/* border: 1px solid black; */
 		height: 100%;
+		position: relative;
+		/* position: flex; */
+		/* justify-content: center; */
+		/* align-items: center; */
+		cursor: pointer;
+	}
+
+	.number {
+		position: absolute;
+		bottom: 25%;
+		left: 20%;
+		font-size: 4em;
 	}
 
 	.title {

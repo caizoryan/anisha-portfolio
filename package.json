@@ -1,0 +1,14 @@
+{
+  "name": "anisha-portfolio",
+  "version": "1.0.0",
+  "type": "module",
+  "main": "script.js",
+  "scripts": {
+    "upload": "git add . && git commit -m \"updates\"",
+    "dev": "python3 -m http.server 3342"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": ""
+}

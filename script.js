@@ -1,45 +1,88 @@
-import { render, sig, mem, eff_on, each } from "./solid/monke.js"
+import { render, sig, mem, eff_on, each, if_then } from "./solid/monke.js"
 import { hdom } from "./solid/hdom/index.js"
+import { data } from "./data.js"
 
-let data = [{
-	name: "Maya",
-	video: "./files/Thesis - Maya/trailer.mp4"
-},
-{
-	name: "Boiling Point",
-	video: "./files/The Boiling Point/5.mp4"
-}
-]
 let cur = sig("")
+let video = e => video = e
+let projectactive = sig(false)
+eff_on(projectactive, () => {
+	if (projectactive()) pausevideo()
+})
+
+function playvideo() {
+	// let video = document.querySelector("video.main")
+	// video.play ? video.play() : null
+	video.play()
+}
+
+function pausevideo() {
+	video.pause()
+}
 
 function Root() {
 	return hdom([
-		["video.main", { src: mem(() => data.find(pro => pro.name == cur())?.video), autoplay: true, loop: true }],
-		[".container",
-			...data.map(project)
-		],
+		["video.main", {
+			src: mem(() => data.find(pro => pro.name == cur())?.teaser),
+			autoplay: true,
+			loop: true,
+			ref: video,
+		}],
 
-		["button.about", "about"],
-		//[".title", cur],
+		[".container", ...data.map(project)],
+
+		[".button-container",
+			["button", "about"],
+			["a", { href: "https://instagram.com/anisha.fbx" },
+				["button", "instagram"],
+			],
+			["button", "email"],
+			["button", "linkedln"],
+		],
+		project_page
+	])
+}
+
+function project_page() {
+	const project = mem(() => data.find(pro => pro.name == cur()))
+	return hdom([".page",
+		{
+			style: mem(() => projectactive()
+				? "height: 100vh; translateY(0);"
+				: `height: 0; translateY(-500px);`)
+		},
+
+		["button.close", {
+			onclick: () => { projectactive(false) }
+		}, "close"],
+
+		mem(() => {
+			if (!project()) {
+				return hdom(["h1", "IMPOSSIBLE"])
+			}
+			else {
+				return hdom(["h1", project().name])
+			}
+		})
 	])
 }
 
 function project(proj, i) {
 	let width = 1 / data.length * 100
-	let show = mem(() => cur() == proj.name)
-	let showcss = mem(() => show() ? "opacity : 1;" : "opacity : 0;")
 	let click = new Audio("./click.mp3")
+	let show = mem(() => cur() == proj.name)
+	let showcss = mem(() => show() ? "opacity: 1;" : "opacity: 0")
 
 	return hdom(
 		[".project", {
 			style: "width: " + width + "%;",
+			onclick: () => projectactive(true),
 			onmouseenter: () => {
 				click.play()
-				document.querySelector("video.main")?.play()
+				playvideo()
 				cur(proj.name)
 			}
 		},
-			//[".note", { style: showcss }, proj.name]
+			[".number", { style: showcss }, i]
 		])
 }
 
