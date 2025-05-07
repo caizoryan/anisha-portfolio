@@ -49,7 +49,6 @@ function Root() {
 }
 
 function about_page() {
-
 	return hdom([".about",
 		{
 			style: mem(() => aboutactive()
@@ -74,12 +73,8 @@ function project_page() {
 		["button.close", { onclick: () => projectactive(false) }, "close"],
 
 		mem(() => {
-			if (!project()) {
-				return hdom(["h1", "IMPOSSIBLE"])
-			}
-			else {
-				return hdom(["h1", project().name])
-			}
+			if (!project()) return hdom(["h1", "IMPOSSIBLE"])
+			else return hdom(["h1", project().name])
 		})
 	])
 }
