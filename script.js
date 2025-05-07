@@ -3,20 +3,25 @@ import { hdom } from "./solid/hdom/index.js"
 import { data } from "./data.js"
 
 let cur = sig("")
-let video = e => video = e
+let videoref = e => video = e
+let video;
 let projectactive = sig(false)
+let aboutactive = sig(false)
+
 eff_on(projectactive, () => {
 	if (projectactive()) pausevideo()
 })
 
 function playvideo() {
-	// let video = document.querySelector("video.main")
-	// video.play ? video.play() : null
 	video.play()
 }
 
 function pausevideo() {
 	video.pause()
+}
+
+function link(src, name) {
+	return ["a", { href: src }, ["button", name]]
 }
 
 function Root() {
@@ -25,22 +30,35 @@ function Root() {
 			src: mem(() => data.find(pro => pro.name == cur())?.teaser),
 			autoplay: true,
 			loop: true,
-			ref: video,
+			ref: videoref,
 		}],
 
 		[".container", ...data.map(project)],
 
 		[".button-container",
-			["button", "about"],
-			["a", { href: "https://instagram.com/anisha.fbx" },
-				["button", "instagram"],
-			],
+			["button", { onclick: () => aboutactive(!aboutactive()) }, "about"],
 			["button", "email"],
-			["button", "linkedln"],
+			link("https://instagram.com/anisha.fbx", "instagram"),
+			link("https://www.linkedin.com/in/anisha-vatnani-903a39228/", "linkedln"),
 		],
 
 		[".title", cur],
+		about_page,
 		project_page
+	])
+}
+
+function about_page() {
+
+	return hdom([".about",
+		{
+			style: mem(() => aboutactive()
+				? "height: 40vh; translateY(0);"
+				: `height: 0; translateY(-500px);`)
+		},
+		["button.close", { onclick: () => aboutactive(false) }, "close"],
+		["h4", "About Anisha"],
+		["p", "Anisha is a dumbass"]
 	])
 }
 
@@ -53,9 +71,7 @@ function project_page() {
 				: `height: 0; translateY(-500px);`)
 		},
 
-		["button.close", {
-			onclick: () => { projectactive(false) }
-		}, "close"],
+		["button.close", { onclick: () => projectactive(false) }, "close"],
 
 		mem(() => {
 			if (!project()) {
@@ -83,8 +99,7 @@ function project(proj, i) {
 				playvideo()
 				cur(proj.name)
 			}
-		},
-			[".number", { style: showcss }, i]
+		}, [".number", { style: showcss }, i]
 		])
 }
 
