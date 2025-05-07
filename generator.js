@@ -22,12 +22,12 @@ dirs.forEach((name) => {
 		if (file.toLowerCase() == "teaser.mp4") { teaser(file) }
 		else {
 			// video
-			if (file.split(".").pop() == ".mp4") video(file)
+			if (file.split(".").pop() == "mp4") video(file)
 
 			// image
-			if (file.split(".").pop() == ".jpeg") image(file)
-			if (file.split(".").pop() == ".jpg") image(file)
-			if (file.split(".").pop() == ".png") image(file)
+			if (file.split(".").pop() == "jpeg") image(file)
+			if (file.split(".").pop() == "jpg") image(file)
+			if (file.split(".").pop() == "png") image(file)
 		}
 	})
 
