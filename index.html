@@ -11,9 +11,15 @@
 <style>
 	:root {}
 
+	@font-face {
+		font-family: "Departure";
+		src: url("./dep.otf");
+	}
 
 	body {
-		font-family: "Roboto Mono", monospace;
+		font-family: "Departure", monospace;
+		background-color: black;
+		color: white;
 	}
 
 	* {
@@ -21,10 +27,38 @@
 		margin: 0;
 	}
 
+	button {
+		all: unset;
+		padding: .5em;
+	}
+
+	button:hover {
+		background-color: white;
+		color: black;
+		cursor: pointer;
+	}
+
+	button.about {
+		position: fixed;
+		left: 1em;
+		bottom: 1em;
+	}
+
+	video.main {
+		position: fixed;
+		top: 0;
+		left: 0;
+		width: 100vw;
+		height: 100vh;
+	}
+
 	.container {
 		display: flex;
 		width: 100vw;
 		height: 100vh;
+		position: fixed;
+		top: 0;
+		left: 0;
 	}
 
 	.container>* {

@@ -1,21 +1,32 @@
 import { render, sig, mem, eff_on, each } from "./solid/monke.js"
 import { hdom } from "./solid/hdom/index.js"
 
-let data = ["p1", "p2", "p3", "p4", "p5", "p6", "p7", "p8"]
+let data = [{
+	name: "Maya",
+	video: "./files/Thesis - Maya/trailer.mp4"
+},
+{
+	name: "Boiling Point",
+	video: "./files/The Boiling Point/5.mp4"
+}
+]
 let cur = sig("")
 
 function Root() {
 	return hdom([
-		[".title", cur],
+		["video.main", { src: mem(() => data.find(pro => pro.name == cur())?.video), autoplay: true, loop: true }],
 		[".container",
 			...data.map(project)
-		]
+		],
+
+		["button.about", "about"],
+		//[".title", cur],
 	])
 }
 
-function project(name, i) {
+function project(proj, i) {
 	let width = 1 / data.length * 100
-	let show = mem(() => cur() == name)
+	let show = mem(() => cur() == proj.name)
 	let showcss = mem(() => show() ? "opacity : 1;" : "opacity : 0;")
 	let click = new Audio("./click.mp3")
 
@@ -24,9 +35,11 @@ function project(name, i) {
 			style: "width: " + width + "%;",
 			onmouseenter: () => {
 				click.play()
-				cur(name)
+				document.querySelector("video.main")?.play()
+				cur(proj.name)
 			}
-		}, [".note", { style: showcss }, name]
+		},
+			//[".note", { style: showcss }, proj.name]
 		])
 }
 
