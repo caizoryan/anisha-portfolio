@@ -4,7 +4,7 @@
   "type": "module",
   "main": "script.js",
   "scripts": {
-    "upload": "git add . && git commit -m \"updates\"",
+    "upload": "git add . && git commit -m \"updates\" && git push",
     "generate": "node generator.js",
     "dev": "python3 -m http.server 3342"
   },
