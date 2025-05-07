@@ -5,6 +5,7 @@
   "main": "script.js",
   "scripts": {
     "upload": "git add . && git commit -m \"updates\"",
+    "generate": "node generator.js",
     "dev": "python3 -m http.server 3342"
   },
   "keywords": [],

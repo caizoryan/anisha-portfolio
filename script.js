@@ -38,6 +38,8 @@ function Root() {
 			["button", "email"],
 			["button", "linkedln"],
 		],
+
+		[".title", cur],
 		project_page
 	])
 }
