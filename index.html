@@ -89,13 +89,42 @@
 		margin: 0;
 	}
 
+	.gallery {
+		display: grid;
+		grid-template-columns: 50% 50%;
+		grid-gap: 1em;
+	}
+
+	@media only screen and (max-width: 900px) {
+		.gallery {
+			grid-template-columns: 100%;
+		}
+	}
+
+	.gallery>* {
+		width: 100%;
+	}
+
+	.page-wrapper {
+		overflow: scroll;
+		transition: height 500ms;
+		position: fixed;
+		width: 100vw;
+	}
 
 	.page {
 		background-color: black;
-		overflow: scroll;
-		transition: all 500ms;
-		position: fixed;
-		width: 100vw;
+		padding: 2em;
+	}
+
+	.page h1 {
+		margin-bottom: 1em;
+	}
+
+	.page button.close {
+		margin-bottom: 1em;
+		text-decoration: underline;
+		text-underline-offset: .45em;
 	}
 
 	.project {

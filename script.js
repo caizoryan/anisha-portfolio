@@ -62,21 +62,41 @@ function about_page() {
 }
 
 function project_page() {
-	const project = mem(() => data.find(pro => pro.name == cur()))
-	return hdom([".page",
-		{
-			style: mem(() => projectactive()
-				? "height: 100vh; translateY(0);"
-				: `height: 0; translateY(-500px);`)
-		},
+	const css = mem(() => projectactive()
+		? "height: 100vh;"
+		: `height: 0;`)
 
-		["button.close", { onclick: () => projectactive(false) }, "close"],
+	const def = {
+		name: "Default",
+		description: "",
+		images: [],
+		videos: [],
+		teaser: ""
+	}
+	const project = mem(() => {
+		let find = data.find(pro => pro.name == cur())
+		if (find) return find
+		else return undefined
+	})
 
-		mem(() => {
-			if (!project()) return hdom(["h1", "IMPOSSIBLE"])
-			else return hdom(["h1", project().name])
-		})
-	])
+	const children = mem(() => {
+		if (!project()) return hdom(["h1", "IMPOSSIBLE"])
+		else return hdom([
+			["h1", project()?.name],
+			["p", project()?.description],
+			[".gallery",
+				...project()?.images.map(e => ["img", { src: e }]),
+				...project()?.videos.map(e => ["video", { src: e, controls: true, }]),
+			]
+		])
+	})
+
+	return hdom(
+		[".page-wrapper", { style: css },
+			[".page",
+				["button.close", { onclick: () => projectactive(false) }, "close"],
+				children
+			]])
 }
 
 function project(proj, i) {
