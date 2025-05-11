@@ -27,24 +27,6 @@ export const data = [
     "teaser": "files/Korg/teaser.mp4"
   },
   {
-    "name": "Māyā",
-    "images": [
-      "files/Māyā/0082.png",
-      "files/Māyā/0614.png",
-      "files/Māyā/0651.png",
-      "files/Māyā/1631.png",
-      "files/Māyā/Untitled_Artwork 1.png",
-      "files/Māyā/Untitled_Artwork 4.png"
-    ],
-    "videos": [
-      "files/Māyā/IMG_6742.mp4",
-      "files/Māyā/IMG_6744.mp4",
-      "files/Māyā/IMG_6751.mp4"
-    ],
-    "description": "",
-    "teaser": "files/Māyā/teaser.mp4"
-  },
-  {
     "name": "Rigging Biped Characters",
     "images": [],
     "videos": [],
@@ -91,6 +73,24 @@ export const data = [
     ],
     "description": "",
     "teaser": "files/The Boiling Point/teaser.mp4"
+  },
+  {
+    "name": "Thesis - Maya",
+    "images": [
+      "files/Thesis - Maya/0082.png",
+      "files/Thesis - Maya/0614.png",
+      "files/Thesis - Maya/0651.png",
+      "files/Thesis - Maya/1631.png",
+      "files/Thesis - Maya/Untitled_Artwork 1.png",
+      "files/Thesis - Maya/Untitled_Artwork 4.png"
+    ],
+    "videos": [
+      "files/Thesis - Maya/IMG_6742.mp4",
+      "files/Thesis - Maya/IMG_6744.mp4",
+      "files/Thesis - Maya/IMG_6751.mp4"
+    ],
+    "description": "",
+    "teaser": "files/Thesis - Maya/teaser.mp4"
   },
   {
     "name": "texture_spider",
