@@ -2,6 +2,8 @@ import { render, sig, mem, eff_on, each, if_then } from "./solid/monke.js"
 import { hdom } from "./solid/hdom/index.js"
 import { data } from "./data.js"
 
+let bio = `Anisha Vatnani is a Junior 3D Artist set to graduate from OCAD University’s Experimental Animation program in 2025. With a background in a diverse and interdisciplinary field, she has developed a broad skill set and gained proficiency in a variety of software tools, particularly within the 3D space. Her experience navigating courses with differing workflows has fostered a fluid adaptability between Maya and Blender, making her comfortable working across various production pipelines. Anisha’s workflow also includes tools such as Mixamo, Substance Painter, and After Effects, allowing her to produce polished and dynamic visual content.`
+
 let cur = sig("")
 let videoref = e => video = e
 let video;
@@ -57,7 +59,7 @@ function about_page() {
 		},
 		["button.close", { onclick: () => aboutactive(false) }, "close"],
 		["h4", "About Anisha"],
-		["p", "Anisha is a dumbass"]
+		["p", bio]
 	])
 }
 
